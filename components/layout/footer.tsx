@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { SITE_CONFIG } from "@/lib/constants"
 
 const footerLinks = {
   quickLinks: [
@@ -27,12 +28,12 @@ const footerLinks = {
   ],
 }
 
-const socialLinks = [
-  { name: "Facebook", href: "#", icon: Facebook },
-  { name: "Twitter", href: "#", icon: Twitter },
-  { name: "Instagram", href: "#", icon: Instagram },
-  { name: "LinkedIn", href: "#", icon: Linkedin },
-]
+const socialIcons = {
+  Facebook,
+  Twitter,
+  Instagram,
+  LinkedIn: Linkedin,
+}
 
 export function Footer() {
   return (
@@ -45,19 +46,22 @@ export function Footer() {
               <span className="font-serif text-2xl font-bold">THET Fund</span>
             </Link>
             <p className="mt-4 text-sm text-primary-foreground/80 leading-relaxed">
-              Investing in skills, knowledge, and infrastructure development for The Gambia&apos;s future.
+              {SITE_CONFIG.description}
             </p>
             <div className="mt-6 flex gap-4">
-              {socialLinks.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-                >
-                  <span className="sr-only">{item.name}</span>
-                  <item.icon className="h-5 w-5" />
-                </a>
-              ))}
+              {SITE_CONFIG.socialLinks.map((item) => {
+                const Icon = socialIcons[item.name as keyof typeof socialIcons]
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                  >
+                    <span className="sr-only">{item.name}</span>
+                    <Icon className="h-5 w-5" />
+                  </a>
+                )
+              })}
             </div>
           </div>
 
@@ -118,18 +122,18 @@ export function Footer() {
             <ul className="mt-4 space-y-3">
               <li className="flex items-start gap-3 text-sm text-primary-foreground/80">
                 <MapPin className="h-5 w-5 flex-shrink-0 mt-0.5" />
-                <span>Ministry of Higher Education, Research, Science and Technology, Bijilo, The Gambia</span>
+                <span>{SITE_CONFIG.address}</span>
               </li>
               <li className="flex items-center gap-3 text-sm text-primary-foreground/80">
                 <Mail className="h-5 w-5 flex-shrink-0" />
-                <a href="mailto:info@thetfund.gm" className="hover:text-primary-foreground transition-colors">
-                  info@thetfund.gm
+                <a href={`mailto:${SITE_CONFIG.email}`} className="hover:text-primary-foreground transition-colors">
+                  {SITE_CONFIG.email}
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-primary-foreground/80">
                 <Phone className="h-5 w-5 flex-shrink-0" />
-                <a href="tel:+220XXXXXXX" className="hover:text-primary-foreground transition-colors">
-                  +220 XXX XXXX
+                <a href={`tel:${SITE_CONFIG.phone.replace(/\s/g, '')}`} className="hover:text-primary-foreground transition-colors">
+                  {SITE_CONFIG.phone}
                 </a>
               </li>
             </ul>

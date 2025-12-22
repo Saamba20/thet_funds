@@ -1,7 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback } from "react"
 import type React from "react"
+
 import { Header } from "@/components/layout/header"
 import { Footer } from "@/components/layout/footer"
 import { Button } from "@/components/ui/button"
@@ -22,6 +23,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
+
 import { toast } from "sonner"
 import {
   Mail,
@@ -35,7 +37,36 @@ import {
   Loader2,
 } from "lucide-react"
 
-const initialForm = {
+import { SITE_CONFIG } from "@/lib/constants"
+
+/* -------------------------------------------------------------------------- */
+/*                                   Config                                   */
+/* -------------------------------------------------------------------------- */
+
+const socialIcons = {
+  Facebook,
+  Twitter,
+  Instagram,
+  LinkedIn: Linkedin,
+}
+
+const SUBJECT_OPTIONS = [
+  { value: "funding", label: "Funding" },
+  { value: "partnership", label: "Partnership" },
+  { value: "media", label: "Media" },
+  { value: "careers", label: "Careers" },
+  { value: "general", label: "General Inquiry" },
+]
+
+type ContactFormState = {
+  name: string
+  email: string
+  organization: string
+  subject: string
+  message: string
+}
+
+const INITIAL_FORM: ContactFormState = {
   name: "",
   email: "",
   organization: "",
@@ -43,23 +74,30 @@ const initialForm = {
   message: "",
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   Page                                     */
+/* -------------------------------------------------------------------------- */
+
 export default function ContactPage() {
-  const [formData, setFormData] = useState(initialForm)
+  const [formData, setFormData] = useState<ContactFormState>(INITIAL_FORM)
   const [loading, setLoading] = useState(false)
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { id, value } = e.target
-    setFormData((prev) => ({ ...prev, [id]: value }))
-  }
+  /* ----------------------------- Form Handlers ---------------------------- */
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { id, value } = e.target
+      setFormData((prev) => ({ ...prev, [id]: value }))
+    },
+    []
+  )
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!formData.subject) {
       toast.error("Missing subject", {
-        description: "Please select a subject.",
+        description: "Please select a subject before submitting.",
       })
       return
     }
@@ -76,183 +114,212 @@ export default function ContactPage() {
       const data = await res.json()
 
       if (!res.ok) {
-        throw new Error(data.message || "Something went wrong")
+        throw new Error(data?.message || "Something went wrong")
       }
 
-      toast.success("Message sent 🎉", {
-        description: "We’ll get back to you shortly.",
+      toast.success("Message sent successfully", {
+        description:
+          "Thank you for contacting the THET Fund. Our team will respond shortly.",
       })
 
-      setFormData(initialForm)
-    } catch (error: any) {
-      toast.error("Failed to send message", {
-        description: error.message,
-      })
+      setFormData(INITIAL_FORM)
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "An unexpected error occurred"
+
+      toast.error("Failed to send message", { description: message })
     } finally {
       setLoading(false)
     }
   }
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="flex min-h-screen flex-col">
       <Header />
 
       <main className="flex-1">
-        {/* Hero */}
-        <section className="bg-primary py-20">
-          <div className="mx-auto max-w-7xl px-4">
-            <h1 className="text-4xl font-bold text-primary-foreground">
-              Contact Us
-            </h1>
-            <p className="mt-4 max-w-2xl text-primary-foreground/90">
-              Have questions about the THET Fund? Reach out and our team will
-              respond as soon as possible.
-            </p>
-          </div>
-        </section>
-
-        {/* Content */}
-        <section className="py-16">
-          <div className="mx-auto max-w-7xl px-4 grid gap-16 lg:grid-cols-2">
-            {/* Info */}
-            <div>
-              <h2 className="text-2xl font-bold mb-4">Get in Touch</h2>
-
-              <div className="space-y-6 mt-8">
-                <InfoItem icon={MapPin} title="Address">
-                  Ministry of Higher Education, Research, Science and Technology,
-                  Bijilo, The Gambia
-                </InfoItem>
-
-                <InfoItem icon={Mail} title="Email">
-                  <a
-                    href="mailto:info@thetfund.gm"
-                    className="hover:text-primary"
-                  >
-                    info@thetfund.gm
-                  </a>
-                </InfoItem>
-
-                <InfoItem icon={Phone} title="Phone">
-                  +220 XXX XXXX
-                </InfoItem>
-
-                <InfoItem icon={Clock} title="Office Hours">
-                  Monday – Friday, 8:00 AM – 5:00 PM
-                </InfoItem>
-              </div>
-
-              <div className="flex gap-4 mt-10">
-                {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                  <div
-                    key={i}
-                    className="h-10 w-10 flex items-center justify-center rounded-lg bg-muted hover:bg-primary hover:text-primary-foreground transition"
-                  >
-                    <Icon className="h-5 w-5" />
-                  </div>
-                ))}
-              </div>
+        {/* =============================== HERO =============================== */}
+        <section className="relative overflow-hidden bg-primary py-20 lg:py-28">
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/90 to-primary" />
+          <div className="relative mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="max-w-3xl">
+              <h1 className="font-serif text-4xl font-bold tracking-tight text-primary-foreground sm:text-5xl">
+                Contact Us
+              </h1>
+              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-primary-foreground/90">
+                Have questions about the THET Fund, funding opportunities, or
+                partnerships? Our team is ready to assist you.
+              </p>
             </div>
-
-            {/* Form */}
-            <Card>
-              <CardHeader>
-                <CardTitle>Send Us a Message</CardTitle>
-                <CardDescription>
-                  Fill in the form and we’ll respond promptly.
-                </CardDescription>
-              </CardHeader>
-
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <Field
-                      label="Full Name"
-                      id="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                    />
-                    <Field
-                      label="Email"
-                      id="email"
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <Field
-                    label="Organization"
-                    id="organization"
-                    value={formData.organization}
-                    onChange={handleChange}
-                  />
-
-                  <div className="space-y-2">
-                    <Label>Subject *</Label>
-                    <Select
-                      value={formData.subject}
-                      onValueChange={(v) =>
-                        setFormData((p) => ({ ...p, subject: v }))
-                      }
-                    >
-                      <SelectTrigger>
-                        <SelectValue placeholder="Select subject" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="funding">Funding</SelectItem>
-                        <SelectItem value="partnership">
-                          Partnership
-                        </SelectItem>
-                        <SelectItem value="media">Media</SelectItem>
-                        <SelectItem value="careers">Careers</SelectItem>
-                        <SelectItem value="general">General</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                    />
-                  </div>
-
-                  <Button className="w-full" disabled={loading}>
-                    {loading ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin mr-2" />
-                        Sending...
-                      </>
-                    ) : (
-                      "Send Message"
-                    )}
-                  </Button>
-                </form>
-              </CardContent>
-            </Card>
           </div>
         </section>
 
-        {/* Map Section */}
-        <section className="py-16 lg:py-24 bg-muted/50">
+        {/* ============================== CONTENT ============================== */}
+        <section className="py-20 lg:py-28">
           <div className="mx-auto max-w-7xl px-4 lg:px-8">
-            <div className="text-center mb-8">
-              <h2 className="font-serif text-2xl font-bold text-foreground">
+            <div className="grid gap-16 lg:grid-cols-2 lg:gap-20">
+              {/* -------------------------- Contact Info -------------------------- */}
+              <div>
+                <h2 className="font-serif text-3xl font-bold tracking-tight">
+                  Get in Touch
+                </h2>
+                <p className="mt-4 max-w-xl text-muted-foreground leading-relaxed">
+                  Whether you are a prospective applicant, partner, or
+                  stakeholder, we welcome your inquiries.
+                </p>
+
+                <div className="mt-10 space-y-6">
+                  <InfoItem icon={MapPin} title="Address">
+                    {SITE_CONFIG.address}
+                  </InfoItem>
+
+                  <InfoItem icon={Mail} title="Email">
+                    <a
+                      href={`mailto:${SITE_CONFIG.email}`}
+                      className="hover:text-primary transition-colors"
+                    >
+                      {SITE_CONFIG.email}
+                    </a>
+                  </InfoItem>
+
+                  <InfoItem icon={Phone} title="Phone">
+                    {SITE_CONFIG.phone}
+                  </InfoItem>
+
+                  <InfoItem icon={Clock} title="Office Hours">
+                    {SITE_CONFIG.openingHours}
+                  </InfoItem>
+                </div>
+
+                {/* Social Links */}
+                <div className="mt-10 flex gap-4">
+                  {SITE_CONFIG.socialLinks.map((item) => {
+                    const Icon =
+                      socialIcons[item.name as keyof typeof socialIcons]
+
+                    return (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`THET Fund ${item.name}`}
+                        className="flex h-10 w-10 items-center justify-center rounded-lg bg-muted text-muted-foreground transition hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                      >
+                        <Icon className="h-5 w-5" />
+                      </a>
+                    )
+                  })}
+                </div>
+              </div>
+
+              {/* ----------------------------- Form ----------------------------- */}
+              <Card className="shadow-sm transition hover:shadow-md">
+                <CardHeader>
+                  <CardTitle>Send Us a Message</CardTitle>
+                  <CardDescription>
+                    Complete the form below and we will respond as soon as
+                    possible.
+                  </CardDescription>
+                </CardHeader>
+
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid gap-4 sm:grid-cols-2">
+                      <Field
+                        label="Full Name"
+                        id="name"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                      />
+                      <Field
+                        label="Email"
+                        id="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <Field
+                      label="Organization"
+                      id="organization"
+                      value={formData.organization}
+                      onChange={handleChange}
+                    />
+
+                    <div className="space-y-2">
+                      <Label>Subject *</Label>
+                      <Select
+                        value={formData.subject}
+                        onValueChange={(value) =>
+                          setFormData((prev) => ({
+                            ...prev,
+                            subject: value,
+                          }))
+                        }
+                      >
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a subject" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          {SUBJECT_OPTIONS.map((item) => (
+                            <SelectItem key={item.value} value={item.value}>
+                              {item.label}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message *</Label>
+                      <Textarea
+                        id="message"
+                        rows={5}
+                        required
+                        value={formData.message}
+                        onChange={handleChange}
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      className="h-12 w-full"
+                      disabled={loading}
+                      aria-busy={loading}
+                    >
+                      {loading ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending message…
+                        </>
+                      ) : (
+                        "Send Message"
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* =============================== MAP =============================== */}
+        <section className="bg-muted/40 py-20 lg:py-28">
+          <div className="mx-auto max-w-7xl px-4 lg:px-8">
+            <div className="mb-10 text-center">
+              <h2 className="font-serif text-3xl font-bold tracking-tight">
                 Our Location
               </h2>
-              <p className="mt-2 text-muted-foreground">
-                Visit us at the THET Fund Secretariat
+              <p className="mt-3 text-muted-foreground">
+                Visit the THET Fund Secretariat in Bijilo.
               </p>
             </div>
 
-            <div className="aspect-[2/1] max-w-5xl mx-auto overflow-hidden rounded-xl shadow">
+            <div className="mx-auto aspect-[2/1] max-w-5xl overflow-hidden rounded-xl shadow">
               <iframe
                 title="THET Fund Location"
                 src="https://www.google.com/maps?q=Ministry%20of%20Higher%20Education%20Research%20Science%20and%20Technology%20Bijilo%20Gambia&output=embed"
@@ -270,25 +337,27 @@ export default function ContactPage() {
   )
 }
 
-/* ---------- Small Helpers ---------- */
+/* -------------------------------------------------------------------------- */
+/*                                 Helpers                                    */
+/* -------------------------------------------------------------------------- */
 
 function InfoItem({
   icon: Icon,
   title,
   children,
 }: {
-  icon: any
+  icon: React.ElementType
   title: string
   children: React.ReactNode
 }) {
   return (
     <div className="flex gap-4">
-      <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary/10">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10">
         <Icon className="h-5 w-5 text-primary" />
       </div>
       <div>
-        <p className="font-medium">{title}</p>
-        <p className="text-muted-foreground">{children}</p>
+        <p className="font-medium text-foreground">{title}</p>
+        <p className="text-muted-foreground leading-relaxed">{children}</p>
       </div>
     </div>
   )
@@ -301,7 +370,14 @@ function Field({
   required,
   value,
   onChange,
-}: any) {
+}: {
+  label: string
+  id: string
+  type?: string
+  required?: boolean
+  value: string
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+}) {
   return (
     <div className="space-y-2">
       <Label htmlFor={id}>

@@ -9,45 +9,46 @@ const documents = [
   {
     category: "governance",
     items: [
-      { name: "Strategic Plan", description: "THET Fund strategic direction and priorities 2024-2028" },
-      { name: "Operational Manual", description: "Guidelines for fund operations and procedures" },
-      { name: "Risk Management Framework", description: "Risk identification, assessment, and mitigation strategies" },
-      { name: "Procurement Manual", description: "Procurement policies and procedures for grant recipients" },
+      { name: "Strategic Plan", description: "THET Fund strategic direction and priorities 2024-2028", href: "/documents/resources/strategic-plan.pdf" },
+      { name: "Operational Manual", description: "Guidelines for fund operations and procedures", href: "/documents/resources/operational-manual.pdf" },
+      { name: "Risk Management Framework", description: "Risk identification, assessment, and mitigation strategies", href: "/documents/resources/risk-management.pdf" },
+      { name: "Procurement Manual", description: "Procurement policies and procedures for grant recipients", href: "/documents/resources/procurement-manual.pdf" },
     ],
   },
   {
     category: "mel",
     items: [
-      { name: "MEL Framework", description: "Monitoring, Evaluation, and Learning methodology" },
-      { name: "Results Framework", description: "Indicators and targets for measuring impact" },
-      { name: "Data Collection Tools", description: "Standard tools for project monitoring" },
+      { name: "MEL Framework", description: "Monitoring, Evaluation, and Learning methodology", href: "/documents/resources/mel-framework.pdf" },
+      { name: "Results Framework", description: "Indicators and targets for measuring impact", href: "/documents/resources/results-framework.pdf" },
+      { name: "Data Collection Tools", description: "Standard tools for project monitoring", href: "/documents/resources/data-collection-tools.pdf" },
     ],
   },
   {
     category: "inclusion",
     items: [
-      { name: "Gender & Inclusion Strategy", description: "Approach to ensuring equitable access and outcomes" },
-      { name: "Disability Inclusion Guidelines", description: "Standards for inclusive programming" },
-      { name: "Safeguarding Policy", description: "Protecting beneficiaries and stakeholders" },
+      { name: "Gender & Inclusion Strategy", description: "Approach to ensuring equitable access and outcomes", href: "/documents/resources/inclusion-strategy.pdf" },
+      { name: "Disability Inclusion Guidelines", description: "Standards for inclusive programming", href: "/documents/resources/disability-guidelines.pdf" },
+      { name: "Safeguarding Policy", description: "Protecting beneficiaries and stakeholders", href: "/documents/resources/safeguarding-policy.pdf" },
     ],
   },
   {
     category: "reports",
     items: [
-      { name: "Annual Report 2024", description: "Comprehensive overview of fund activities and impact" },
-      { name: "Quarterly Report Q1 2024", description: "Progress update for January-March 2024" },
-      { name: "Financial Statements", description: "Audited financial reports" },
+      { name: "Annual Impact Report 2024", description: "Comprehensive overview of fund activities and impact", href: "/documents/reports/annual-impact-report-2024.pdf" },
+      { name: "Quarterly Report Q3 2025", description: "Progress update for July-September 2025", href: "/documents/reports/quarterly-report-q3-2025.pdf" },
+      { name: "Graduate Tracer Study", description: "Follow-up studies tracking graduate employment outcomes", href: "/documents/reports/graduate-tracer-study.pdf" },
+      { name: "Phase 1 Evaluation", description: "Independent assessment of programme effectiveness", href: "/documents/reports/phase-1-evaluation.pdf" },
     ],
   },
 ]
 
 const templates = [
-  { name: "Grant Proposal Template", description: "Standard format for project proposals", icon: FileText },
-  { name: "Budget Template", description: "Financial planning spreadsheet for applications", icon: ClipboardList },
-  { name: "Progress Report Template", description: "Quarterly reporting format for grantees", icon: FileText },
-  { name: "Final Report Template", description: "Project completion report format", icon: FileText },
-  { name: "Financial Report Template", description: "Expenditure tracking and reporting", icon: ClipboardList },
-  { name: "Procurement Request Form", description: "Standard procurement documentation", icon: ClipboardList },
+  { name: "Grant Proposal Template", description: "Standard format for project proposals", icon: FileText, href: "/documents/templates/grant-proposal.pdf" },
+  { name: "Budget Template", description: "Financial planning spreadsheet for applications", icon: ClipboardList, href: "/documents/templates/budget-template.xlsx" },
+  { name: "Progress Report Template", description: "Quarterly reporting format for grantees", icon: FileText, href: "/documents/templates/progress-report.pdf" },
+  { name: "Final Report Template", description: "Project completion report format", icon: FileText, href: "/documents/templates/final-report.pdf" },
+  { name: "Financial Report Template", description: "Expenditure tracking and reporting", icon: ClipboardList, href: "/documents/templates/financial-report.xlsx" },
+  { name: "Procurement Request Form", description: "Standard procurement documentation", icon: ClipboardList, href: "/documents/templates/procurement-request.pdf" },
 ]
 
 export default function ResourcesPage() {
@@ -102,10 +103,13 @@ export default function ResourcesPage() {
                           <Button
                             variant="ghost"
                             size="sm"
-                            className="mt-3 gap-2 p-0 h-auto text-primary hover:text-primary"
+                            asChild
+                            className="mt-3 gap-2 p-0 h-auto text-primary hover:text-primary hover:bg-transparent"
                           >
-                            <Download className="h-4 w-4" />
-                            Download PDF
+                            <a href={(doc as any).href} download>
+                              <Download className="h-4 w-4" />
+                              Download PDF
+                            </a>
                           </Button>
                         </CardContent>
                       </Card>
@@ -140,9 +144,11 @@ export default function ResourcesPage() {
                   </CardHeader>
                   <CardContent>
                     <CardDescription className="text-sm">{template.description}</CardDescription>
-                    <Button variant="ghost" size="sm" className="mt-3 gap-2 p-0 h-auto text-primary hover:text-primary">
-                      <Download className="h-4 w-4" />
-                      Download
+                    <Button variant="ghost" size="sm" asChild className="mt-3 gap-2 p-0 h-auto text-primary hover:text-primary hover:bg-transparent">
+                      <a href={template.href} download>
+                        <Download className="h-4 w-4" />
+                        Download
+                      </a>
                     </Button>
                   </CardContent>
                 </Card>
