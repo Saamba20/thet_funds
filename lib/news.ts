@@ -18,7 +18,7 @@ export const newsItems: NewsItem[] = [
     date: "Coming Soon",
     category: "Announcement",
     featured: true,
-    image: "/9.jpeg",
+    image: "/14.jpeg",
     content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
   },
   {
@@ -29,7 +29,7 @@ export const newsItems: NewsItem[] = [
     date: "December 2024",
     category: "Press Release",
     featured: true,
-    image: "/9.jpeg",
+    image: "/15.jpeg",
     content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
   },
   {
@@ -40,7 +40,7 @@ export const newsItems: NewsItem[] = [
     date: "Upcoming",
     category: "Event",
     featured: false,
-    image: "/9.jpeg",
+    image: "/16.jpeg",
     content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
   },
   {
@@ -51,7 +51,7 @@ export const newsItems: NewsItem[] = [
     date: "Open",
     category: "Notice",
     featured: true,
-    image: "/9.jpeg",
+    image: "/17.jpeg",
     content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
   },
   {
@@ -62,20 +62,20 @@ export const newsItems: NewsItem[] = [
     date: "November 2024",
     category: "Press Release",
     featured: false,
-    image: "/9.jpeg",
+    image: "/18.jpeg",
     content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
   },
-  {
-    id: "training-workshop",
-    title: "Capacity Building Workshop for Institutional Leaders",
-    description:
-      "A three-day workshop was held for leaders of TVET institutions focused on grant management, monitoring and evaluation, and institutional governance.",
-    date: "October 2024",
-    category: "Event",
-    featured: false,
-    image: "/9.jpeg",
-    content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
-  },
+  // {
+  //   id: "training-workshop",
+  //   title: "Capacity Building Workshop for Institutional Leaders",
+  //   description:
+  //     "A three-day workshop was held for leaders of TVET institutions focused on grant management, monitoring and evaluation, and institutional governance.",
+  //   date: "October 2024",
+  //   category: "Event",
+  //   featured: false,
+  //   image: "/4.jpeg",
+  //   content: "fhhdjd State House, Banjul, 1st December 2025: President Barrow Calls For Honest Teaching of African Warriors’ History in Colonial Wars At the solemn commemoration of the 81st anniversary of the ‘Thiaroye Massacre’ of World War II veterans in Senegal, His Excellency President Adama Barrow, commended his Senegalese counterpart President Bassirou Diomaye Faye and the Government of Senegal for their steadfast commitment to the establishment of truth on this “dark chapter of our shared history.” The international committee of independent researchers on Thiaroye represents a crucial step towards historical justice fhhfhfhfhf fjjfj",
+  // },
 ]
 
 export function getAllNews() {

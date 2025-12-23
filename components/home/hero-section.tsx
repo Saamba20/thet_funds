@@ -46,7 +46,7 @@ export function HeroSection() {
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Button size="lg" variant="secondary" asChild>
               <Link href="/funding/apply" className="gap-2">
-                Apply for Funding
+                Support the THET Fund
                 <ArrowRight className="h-4 w-4" />
               </Link>
             </Button>

@@ -4,21 +4,21 @@ import useEmblaCarousel from "embla-carousel-react"
 import AutoScroll from "embla-carousel-auto-scroll"
 
 const partners = [
-  { name: "TaybullPay", logo: "/Partner logo/12 - taybullpay.png" },
-  { name: "AfriMoney", logo: "/Partner logo/13 - afrimoney logo.png" },
-  { name: "NYC", logo: "/Partner logo/14 - NYC logo.jpg" },
-  { name: "Wistem", logo: "/Partner logo/15 - wistem.jpeg" },
-  { name: "Building Capacity and Bridges", logo: "/Partner logo/16 - Building capacity and bridges.jpeg" },
-  { name: "Senegalo-Gambia", logo: "/Partner logo/18 - senegalo-gambia.jpg" },
-  { name: "UNCDF", logo: "/Partner logo/2 - UNCDF w tag.png" },
-  { name: "Fatt Fatt", logo: "/Partner logo/20 - fatt fatt logo.png" },
-  { name: "Dex Deliveries", logo: "/Partner logo/21 - dex deliveries logo.jpeg" },
-  { name: "Link Corporation", logo: "/Partner logo/24 - link corporation partner logo.png" },
-  { name: "UTG Student's Union", logo: "/Partner logo/25 - utg student's union logo.jpeg" },
-  { name: "GYIN", logo: "/Partner logo/26 - gyin.png" },
-  { name: "GSCC", logo: "/Partner logo/30 - GSCC logo.png" },
-  { name: "CSM Technology", logo: "/Partner logo/7 - CSMTechnology_1556082550855.png" },
-  { name: "Reliance", logo: "/Partner logo/9 - reliance.png" },
+  { name: "Partner 1", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 2", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 3", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 4", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 5", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 6", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 7", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 8", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 9", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 10", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 11", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 12", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 13", logo: "/Partner logo/Partner1.jpg" },
+  { name: "Partner 14", logo: "/Partner logo/Partner2.jpg" },
+  { name: "Partner 15", logo: "/Partner logo/Partner1.jpg" },
 ]
 
 export function PartnersCarousel() {

@@ -11,22 +11,22 @@ const partnerCategories = [
     description: "National and local government partners supporting education policy and implementation.",
     icon: Building2,
     examples: [
-      "Ministry of Higher Education, Research, Science and Technology",
-      "Ministry of Finance",
-      "Ministry of Youth and Sports",
+      "National",
+      "Local",
+      "Ministry",
     ],
   },
   {
     title: "Development Partners",
     description: "International organizations and bilateral partners providing funding and technical support.",
     icon: Globe,
-    examples: ["World Bank", "African Development Bank", "European Union", "UN Agencies"],
+    examples: ["Organizations", "International donors", "Partners", "Agencies"],
   },
   {
     title: "Private Sector",
     description: "Companies and industry partners supporting skills development and employment linkages.",
     icon: Briefcase,
-    examples: ["QGroup", "Industry associations", "Training service providers"],
+    examples: ["Group", "Industry associations", "Training service providers"],
   },
   {
     title: "NGOs & Civil Society",
@@ -38,13 +38,13 @@ const partnerCategories = [
     title: "Academic Institutions",
     description: "Universities, colleges, and TVET institutions implementing funded programmes.",
     icon: GraduationCap,
-    examples: ["University of The Gambia", "Gambia Technical Training Institute", "Private colleges"],
+    examples: ["University", "Technical Training Institute", "Private colleges"],
   },
   {
     title: "Diaspora Networks",
     description: "Gambian professionals abroad contributing expertise and resources.",
     icon: Globe,
-    examples: ["Gambian diaspora associations", "Professional networks", "Alumni groups"],
+    examples: ["Associations", "Professional networks", "Alumni groups"],
   },
 ]
 
