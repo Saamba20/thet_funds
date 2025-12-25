@@ -40,12 +40,12 @@ export function HeroSection() {
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-primary-foreground/90 sm:text-xl">
             The Tertiary and Higher Education Trust (THET) Fund provides strategic financing to strengthen TVET and
-            higher education institutions, empower learners, and support national development through skills, research,
-            and innovation.
+            higher education institutions, empower learners, and support national development through skills, infrastructure,
+            and development.
           </p>
           <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Button size="lg" variant="secondary" asChild>
-              <Link href="/funding/apply" className="gap-2">
+              <Link href="/partners" className="gap-2">
                 Support the THET Fund
                 <ArrowRight className="h-4 w-4" />
               </Link>
