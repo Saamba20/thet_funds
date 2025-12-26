@@ -92,8 +92,7 @@ export default function AboutPage() {
                   <p>
                     The THET Fund mobilizes, manages, and allocates resources to
                     support quality teaching, skills development, innovation,
-                    and institutional excellence across public and accredited
-                    private institutions.
+                    and institutional excellence across public institutions.
                   </p>
                   <p>
                     We invest in people, institutions, and systems to ensure
