@@ -290,7 +290,7 @@ export default function ApplyPage() {
                 asChild
                 size="lg"
                 variant="outline"
-                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+                className="bg-primary border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
               >
                 <Link href="/contact">Contact Us</Link>
               </Button>
